@@ -23,7 +23,7 @@ class CLI
     def list_characters
         Character.all.each.with_index(1) do |character, i|
             puts "#{i}. #{character.name}"
-            sleep 0.07
+            sleep 0.05
         end
     end
 
@@ -31,12 +31,32 @@ class CLI
         puts "Please select a number from above."
         input = gets.chomp
         if !input.to_i.between?(1, Character.all.count)
-            puts "We can't seem to find that character. Please choose a number between 1 and 43."
+            puts "~~~We can't seem to find that character. Please choose a number between 1 and 43.~~~"
+            sleep 3
         list_characters
         menu
 
         else character = Character.all[input.to_i-1]
             character_info(character)
+        end
+        puts "Would you like to learn about someone else?"
+        puts "Please enter Y or N."
+        if another_character == "y"
+            list_characters
+            menu
+            another_character==gets.strip.downcase
+        elsif another_character == "n"
+            puts "Once you've met someone you never really forget them."
+            sleep 1
+            puts "It just takes a while for your memories to return."
+            sleep 1
+            puts "Thanks for playing!"
+            sleep 1
+            exit
+        else 
+            puts "I didn't understand that. Please try again!"
+            list_characters
+            menu
         end
     end
 
@@ -48,6 +68,12 @@ class CLI
         puts "Gender: #{character.gender}"
         puts "Age: #{character.age}"
         puts "Hair Color: #{character.hair_color}"
+    end
+
+    def self.display_films(film)
+        puts "Films: #{film.title}"
+        puts "Director: #{film.director}"
+        puts "Description: #{film.description}"
     end
 end
 
