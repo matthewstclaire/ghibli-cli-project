@@ -2,6 +2,7 @@ require_relative "character"
 require 'rest-client' #allows me to open the URL
 require 'json'
 require 'pry'
+require 'colorize'
 
 class API
 
@@ -17,12 +18,13 @@ end
 def self.scrape_details(character)
     resp = RestClient.get(character.url)
     char_hash = JSON.parse(resp.body, symbolize_names:true)
-    character.films = char_hash[:films]
-    self.character_films(character)
-    character.species = char_hash[:species]
+
     character.gender = char_hash[:gender]
     character.age = char_hash[:age]
     character.hair_color = char_hash[:hair_color]
+
+    character.films = char_hash[:films]
+    self.character_films(character)
 end
 
     def self.character_films(character)
