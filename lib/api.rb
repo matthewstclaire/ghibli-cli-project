@@ -1,5 +1,5 @@
 require_relative "character"
-require 'rest-client' #allows me to open the URL
+require 'rest-client' 
 require 'json'
 require 'pry'
 require 'colorize'
