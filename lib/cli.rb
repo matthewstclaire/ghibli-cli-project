@@ -42,8 +42,8 @@ class CLI
         else character = Character.all[input.to_i-1]
             character_info(character)
         end
-        puts "Would you like to learn about someone else?".light_red.on_light_white.bold
-        puts "Please enter Y or N.".light_red.on_light_white.bold
+        puts "Would you like to learn about someone else?".blue.on_light_white.bold
+        puts "Please enter Y or N.".blue.on_light_white.bold
         another_character = gets.strip.downcase
         if another_character == "y"
             list_characters
@@ -84,7 +84,8 @@ class CLI
             sleep 2
             exit
         else 
-            puts "I didn't understand that. Please try again!".red.bold
+            puts "I didn't understand that. Please choose from the list below!".red.bold
+            sleep 3
             list_characters
             menu
         end
@@ -92,7 +93,7 @@ class CLI
 
     def character_info(character)
         API.scrape_details(character)
-        puts "Here is a little more about #{character.name}:".red.on_white.bold
+        # puts "Here is a little more about #{character.name}:".red.on_white.bold
         puts "Gender: #{character.gender}"
         puts "Age: #{character.age}"
         puts "Hair Color: #{character.hair_color}"

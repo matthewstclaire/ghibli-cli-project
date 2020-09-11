@@ -18,7 +18,7 @@ end
 def self.scrape_details(character)
     resp = RestClient.get(character.url)
     char_hash = JSON.parse(resp.body, symbolize_names:true)
-
+    puts "Here is a little more about #{character.name}:".blue.on_white.bold
     character.gender = char_hash[:gender]
     character.age = char_hash[:age]
     character.hair_color = char_hash[:hair_color]
