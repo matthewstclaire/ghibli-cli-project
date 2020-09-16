@@ -23,7 +23,7 @@ class CLI
     end
 
     def list_characters
-        Character.all.each.with_index(1) do |character, i|
+        Character.all.sort_by{|char| char.name}.each.with_index(1) do |character, i|
             puts "#{i}. #{character.name}"
             sleep 0.05
         end
@@ -105,6 +105,8 @@ class CLI
         puts "Description: #{film.description}"
     end
 end
+
+
 
 
 # git add .
